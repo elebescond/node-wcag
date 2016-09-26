@@ -13,6 +13,7 @@ var wcag = require('./'),
 
 var uri = argv._[0] || argv.u || argv.uri || argv.url,
     id = argv.id || process.env.ACHECKER_ID,
+    service = argv.service || process.env.ACHECKER_SERVICE,
     guide = argv.guide,
     pkg = require('./package.json'),
     isLocal;
@@ -44,6 +45,7 @@ isLocal = ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(url.parse(uri).hostname)
 
 function validate(uri, cb) {
   var opts = {
+    service: service,
     uri: uri,
     id: id,
     guide: guide

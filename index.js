@@ -84,6 +84,9 @@ function validate(opts, cb) {
   opts = opts || {};
   cb = cb || function() {};
   var msg;
+  if (!opts.service) {
+    opts.service = 'http://achecker.ca/checkacc.php';
+  }
   if (!opts.uri) {
     return cb(new Error('No URI provided to test.'));
   }
@@ -96,7 +99,7 @@ function validate(opts, cb) {
     return cb(new Error(msg));
   }
   opts = {
-    uri: 'http://achecker.ca/checkacc.php',
+    uri: opts.service,
     qs: {
       uri: protocolify(opts.uri),
       id: opts.id,
